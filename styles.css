@@ -1,0 +1,484 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: transparent;
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 100vh;
+  background: transparent;
+  padding-bottom: 30px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.icon-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon {
+  width: 13px;
+  height: 15px;
+  transition: all 0.3s ease;
+}
+
+.username {
+  font-size: 10px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+}
+
+/* Twitch */
+.twitch .icon-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(100, 73, 201, 0.8),
+    rgba(100, 73, 201, 0.6)
+  );
+  border-color: rgba(100, 73, 201, 0.8);
+}
+
+.twitch .social-icon {
+  color: #ffffff;
+}
+
+.twitch:hover .icon-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(100, 73, 201, 1),
+    rgba(100, 73, 201, 0.8)
+  );
+  box-shadow: 0 10px 25px rgba(100, 73, 201, 0.4);
+}
+
+/* Instagram */
+.instagram .icon-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(225, 48, 108, 0.8),
+    rgba(255, 183, 77, 0.6)
+  );
+  border-color: rgba(225, 48, 108, 0.8);
+}
+
+.instagram .social-icon {
+  color: #ffffff;
+}
+
+.instagram:hover .icon-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(225, 48, 108, 1),
+    rgba(255, 183, 77, 0.8)
+  );
+  box-shadow: 0 10px 25px rgba(225, 48, 108, 0.4);
+}
+
+/* X (Twitter) */
+.x-twitter .icon-wrapper {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+  border-color: rgba(0, 0, 0, 0.8);
+}
+
+.x-twitter .social-icon {
+  color: #ffffff;
+}
+
+.x-twitter:hover .icon-wrapper {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8));
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Animações */
+@keyframes twitchPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes instagramRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes xFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Efeitos de hover adicionais */
+.icon-container:hover .social-icon {
+  transform: scale(1.2);
+}
+
+.icon-container:hover .username {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .social-icons {
+    gap: 12px;
+  }
+
+  .icon-wrapper {
+    padding: 8px;
+  }
+
+  .social-icon {
+    width: 11px;
+    height: 13px;
+  }
+
+  .username {
+    font-size: 9px;
+  }
+}
+
+/* Efeito de brilho */
+.icon-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.icon-wrapper:hover::before {
+  left: 100%;
+}
+
+/* Efeito de borda pulsante */
+.icon-wrapper::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 14px;
+  background: linear-gradient(
+    45deg,
+    #ff6b6b,
+    #4ecdc4,
+    #45b7d1,
+    #96ceb4,
+    #ffeaa7
+  );
+  background-size: 400% 400%;
+  animation: borderGlow 3s ease-in-out infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.icon-wrapper:hover::after {
+  opacity: 1;
+}
+
+/* Efeito de sombra interna */
+.icon-wrapper {
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Efeito de rotação 3D sutil */
+.icon-container {
+  perspective: 1000px;
+}
+
+.icon-wrapper:hover {
+  transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Classe para animação de entrada especial */
+.icon-container.entrance-animation {
+  animation: entranceSequence 8s ease-in-out forwards;
+}
+
+.icon-container.entrance-animation .icon-wrapper {
+  animation: entranceWrapper 8s ease-in-out forwards;
+}
+
+.icon-container.entrance-animation .social-icon {
+  animation: entranceIcon 8s ease-in-out forwards;
+}
+
+.icon-container.entrance-animation .username {
+  animation: entranceUsername 8s ease-in-out forwards;
+}
+
+/* Efeito de gradiente animado no fundo */
+.twitch .icon-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(100, 73, 201, 0.8),
+    rgba(100, 73, 201, 0.6),
+    rgba(100, 73, 201, 0.8)
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+.instagram .icon-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(225, 48, 108, 0.8),
+    rgba(255, 183, 77, 0.6),
+    rgba(225, 48, 108, 0.8)
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+.x-twitter .icon-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8),
+    rgba(50, 50, 50, 0.6),
+    rgba(0, 0, 0, 0.8)
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+/* Efeito de texto flutuante */
+.username {
+  position: relative;
+  overflow: hidden;
+}
+
+.username::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShine 2s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.icon-wrapper:hover .username::before {
+  opacity: 1;
+}
+
+/* Efeito de partículas flutuantes */
+.icon-wrapper::before {
+  content: "✦";
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  animation: particleFloat 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+/* Novas animações */
+@keyframes borderGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes textShine {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* Animações de entrada especial */
+@keyframes entranceSequence {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(50px);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  25% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1) translateY(0);
+  }
+  75% {
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes entranceWrapper {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  15% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: rotateX(0deg) rotateY(360deg);
+  }
+  75% {
+    transform: rotateX(0deg) rotateY(360deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes entranceIcon {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.2);
+  }
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes entranceUsername {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.9);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
