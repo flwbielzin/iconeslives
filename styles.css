@@ -50,8 +50,8 @@ body {
 }
 
 .social-icon {
-  width: 13px;
-  height: 15px;
+  width: 48px;
+  height: 48px;
   transition: all 0.3s ease;
 }
 
@@ -184,8 +184,8 @@ body {
   }
 
   .social-icon {
-    width: 11px;
-    height: 13px;
+    width: 42px;
+    height: 42px;
   }
 
   .username {
