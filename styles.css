@@ -73,9 +73,7 @@ body {
   border-color: rgba(100, 73, 201, 0.8);
 }
 
-.twitch .social-icon {
-  color: #ffffff;
-}
+/* Removido para manter cores originais */
 
 .twitch:hover .icon-wrapper {
   background: linear-gradient(
@@ -96,9 +94,7 @@ body {
   border-color: rgba(225, 48, 108, 0.8);
 }
 
-.instagram .social-icon {
-  color: #ffffff;
-}
+/* Removido para manter cores originais */
 
 .instagram:hover .icon-wrapper {
   background: linear-gradient(
@@ -115,9 +111,7 @@ body {
   border-color: rgba(0, 0, 0, 0.8);
 }
 
-.x-twitter .social-icon {
-  color: #ffffff;
-}
+/* Removido para manter cores originais */
 
 .x-twitter:hover .icon-wrapper {
   background: linear-gradient(135deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8));
@@ -164,13 +158,8 @@ body {
 }
 
 /* Efeitos de hover adicionais */
-.icon-container:hover .social-icon {
-  transform: scale(1.2);
-}
-
 .icon-container:hover .username {
   opacity: 1;
-  transform: scale(1.1);
 }
 
 /* Responsividade */
@@ -194,7 +183,7 @@ body {
 }
 
 /* Efeito de brilho */
-.icon-wrapper::before {
+.icon-wrapper .shine-effect {
   content: "";
   position: absolute;
   top: 0;
@@ -208,43 +197,11 @@ body {
     transparent
   );
   transition: left 0.5s;
+  pointer-events: none;
 }
 
-.icon-wrapper:hover::before {
+.icon-wrapper:hover .shine-effect {
   left: 100%;
-}
-
-/* Efeito de borda pulsante */
-.icon-wrapper::after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border-radius: 14px;
-  background: linear-gradient(
-    45deg,
-    #ff6b6b,
-    #4ecdc4,
-    #45b7d1,
-    #96ceb4,
-    #ffeaa7
-  );
-  background-size: 400% 400%;
-  animation: borderGlow 3s ease-in-out infinite;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.icon-wrapper:hover::after {
-  opacity: 1;
-}
-
-/* Efeito de sombra interna */
-.icon-wrapper {
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 /* Efeito de rotação 3D sutil */
@@ -262,7 +219,11 @@ body {
 }
 
 .icon-container.entrance-animation .icon-wrapper {
-  animation: entranceWrapper 8s ease-in-out forwards;
+  /* Fica parado inicialmente */
+}
+
+.icon-container.start-rotation .icon-wrapper {
+  animation: entranceWrapper 3s linear forwards;
 }
 
 .icon-container.entrance-animation .social-icon {
@@ -307,54 +268,22 @@ body {
   animation: gradientShift 4s ease-in-out infinite;
 }
 
-/* Efeito de texto flutuante */
+/* Cores originais dos ícones sempre visíveis */
+.twitch .social-icon {
+  color: #9146ff !important;
+}
+
+.instagram .social-icon {
+  color: #e1306c !important;
+}
+
+.x-twitter .social-icon {
+  color: #000000 !important;
+}
+
+/* Efeito de texto flutuante - removido para compatibilidade */
 .username {
   position: relative;
-  overflow: hidden;
-}
-
-.username::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: textShine 2s ease-in-out infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.icon-wrapper:hover .username::before {
-  opacity: 1;
-}
-
-/* Efeito de partículas flutuantes */
-.icon-wrapper::before {
-  content: "✦";
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
-  animation: particleFloat 4s ease-in-out infinite;
-  z-index: 2;
-}
-
-/* Novas animações */
-@keyframes borderGlow {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
 }
 
 @keyframes gradientShift {
@@ -367,50 +296,16 @@ body {
   }
 }
 
-@keyframes textShine {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes particleFloat {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-10px) rotate(180deg);
-    opacity: 1;
-  }
-}
-
 /* Animações de entrada especial */
 @keyframes entranceSequence {
   0% {
     opacity: 0;
-    transform: scale(0.5) translateY(50px);
   }
   15% {
     opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-  25% {
-    transform: scale(1) translateY(0);
-  }
-  50% {
-    transform: scale(1) translateY(0);
-  }
-  75% {
-    transform: scale(1) translateY(0);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0);
   }
 }
 
@@ -418,20 +313,8 @@ body {
   0% {
     transform: rotateX(0deg) rotateY(0deg);
   }
-  15% {
-    transform: rotateX(0deg) rotateY(0deg);
-  }
-  25% {
-    transform: rotateX(0deg) rotateY(0deg);
-  }
-  50% {
-    transform: rotateX(0deg) rotateY(360deg);
-  }
-  75% {
-    transform: rotateX(0deg) rotateY(360deg);
-  }
   100% {
-    transform: rotateX(0deg) rotateY(0deg);
+    transform: rotateX(0deg) rotateY(360deg);
   }
 }
 
@@ -440,13 +323,13 @@ body {
     transform: scale(1);
   }
   15% {
-    transform: scale(1.2);
+    transform: scale(1);
   }
   25% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1);
   }
   75% {
     transform: scale(1);
@@ -459,11 +342,11 @@ body {
 @keyframes entranceUsername {
   0% {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(1);
   }
   15% {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1);
   }
   25% {
     opacity: 1;
@@ -471,7 +354,7 @@ body {
   }
   50% {
     opacity: 0.8;
-    transform: scale(0.9);
+    transform: scale(1);
   }
   75% {
     opacity: 1;
